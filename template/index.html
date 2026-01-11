@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air Quality Index Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='basic.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 120px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: #333;
+            padding: 10px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        .dropdown:hover .dropdown-content,
+        .dropdown:focus-within .dropdown-content {
+            display: block;
+        }
+        .dropbtn {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">AQI Predictor</div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('index') }}" onclick="showHome()">Home</a></li>
+                <!-- <li><a href="{{ url_for('info')}}" >Info</a></li> -->
+                <li class="dropdown">
+                    <!-- <input type="text"> -->
+                    <a href="#" class="dropbtn">AQI</a>
+                    <div class="dropdown-content">
+                        <a href="{{ url_for('basic') }}">Basic</a>
+                        <a href="{{ url_for('advance') }}">Advance</a>
+                    </div>
+                </li>
+                <li><a href="{{ url_for('info')}}" >Info</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home-page">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero">
+                <h1>Air Quality Index</h1>
+                <p>Monitor and predict air quality in real-time</p>
+                <!-- <img src="air.avif" alt="Air Quality Image" class="hero-image"> -->
+                <div class="scroll-indicator">
+                    <!-- <p>Scroll down for dashboard</p> -->
+                    <div style="text-align: center; margin-top: 0.5rem;">↓</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section class="dashboard">
+            <div class="container">
+                <h2>Current Air Quality Dashboard</h2>
+                
+                <div class="metrics-container">
+                    <div class="metrics-grid">
+                        <!-- PM2.5 Card -->
+                        <div class="metric-card">
+                            <div class="metric-header">
+                                <span class="metric-title">PM2.5</span>
+                                <span class="metric-value">45 μg/m³</span>
+                            </div>
+                            <div class="metric-chart1 PM2.5-chart">
+                                <div class="chart-bar"></div>
+                            </div>
+                            <div class="metric-info">
+                                As PM2.5 concentration increases, AQI rises sharply, making it the most critical pollutant for air quality and health.                          
+                            </div>
+                        </div>
+
+                        <!-- Temperature Card -->
+                        <div class="metric-card">
+                            <div class="metric-header">
+                                <span class="metric-title">Temperature</span>
+                                <span class="metric-value">24°C</span>
+                            </div>
+                            <div class="metric-chart2 temp-chart">
+                                <div class="chart-bar"></div>
+                            </div>
+                            <div class="metric-info">
+                                Both hot summers and cold winters can worsen AQI — by boosting ozone in heat or trapping pollutants in winter.
+                            </div>
+                        </div>
+                        <br>
+                        <!-- NO2 Card -->
+                        <div class="metric-card">
+                            <div class="metric-header">
+                                <span class="metric-title">NO2</span>
+                                <span class="metric-value">68%</span>
+                            </div>
+                            <div class="metric-chart3 NO2-chart">
+                                <div class="chart-bar"></div>
+                            </div>
+                            <div class="metric-info">
+                               Higher NO₂ levels, mostly from vehicles and industry, increase AQI and contribute to urban smog
+                            </div>
+                        </div>
+
+                        <!-- SO2 Card -->
+                        <div class="metric-card">
+                            <div class="metric-header">
+                                <span class="metric-title">SO2</span>
+                                <span class="metric-value">56%</span>
+                            </div>
+                            <div class="metric-chart4 SO2-chart">
+                                <div class="chart-bar"></div>
+                            </div>
+                            <div class="metric-info">
+                                SO₂ from fossil fuel burning raises AQI, especially in industrial zones and coal-burning regions.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+
+        <!-- Information Section -->
+        <section class="info-section">
+            <div class="container">
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>About PM2.5</h3>
+                        <p>PM2.5 refers to fine particulate matter with a diameter of 2.5 micrometers or smaller. These particles can penetrate deep into the lungs and even enter the bloodstream, making them particularly harmful to human health.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Temperature Impact</h3>
+                        <p>Temperature plays a crucial role in air quality. Higher temperatures can increase the formation of ground-level ozone and affect the dispersion of pollutants in the atmosphere.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Humidity Effects</h3>
+                        <p>Humidity influences air quality by affecting the formation of secondary pollutants and the behavior of existing particles. High humidity can lead to the formation of haze and smog.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Predict Page -->
+    
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Air Quality Index Predictor. All rights reserved.</p>
+            <p>Stay informed, breathe better.</p>
+        </div>
+    </footer>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            const resultMessage = document.getElementById('result-message');
+            if (resultMessage) {
+                resultMessage.style.display = 'block';
+                resultMessage.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+
+    <!-- <script>
+        function showHome() {
+            document.getElementById('home-page').style.display = 'block';
+            document.getElementById('predict-page').style.display = 'none';
+        }
+
+        function showPredict(type) {
+            document.getElementById('home-page').style.display = 'none';
+            document.getElementById('predict-page').style.display = 'block';
+            // Optionally, you can show/hide fields based on type
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            document.getElementById('result-message').style.display = 'block';
+            document.getElementById('result-message').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script> -->
+    <!-- <footer>
+        <p>&copy; 2025 AQI Predictor. All rights reserved.</p>
+    </footer> -->
+</body>
+
+</html>
